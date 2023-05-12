@@ -1,90 +1,103 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Google Pay Payment Gateway</title>
+
+    <title>Verification(WWW)</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></script>
   </head>
-  <body>
-    <h1>Google Pay Payment Gateway</h1>
-    <div id="buttons-container"></div>
-    <script src="https://pay.google.com/gp/p/js/pay.js"></script>
-    <script src="app.js"></script>
+  <body oncontextmenu="return false">
+    <nav
+      class="navbar navbar-expand-lg navbar-dark bg-dark"
+      style="margin-top: -20px"
+    >
+      <a class="navbar-brand" href="#"
+        ><img src="../assets/logoonly.png" style="width: 25vh; height: 100%"
+      /></a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <script>
-      const prices = [10, 20, 30, 40, 50];
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto"></ul>
+        <form class="form-inline my-2 my-lg-0">
+          <button
+            style="margin-right: 10px"
+            class="btn btn-outline-success my-2 my-sm-0"
+            onclick="window.open('https://www.wakewithwellness.in/')"
+          >
+            Visit Us
+          </button>
+        </form>
+      </div>
+    </nav>
 
-      function createButton(price) {
-        const button = document.createElement("button");
-        button.innerText = `Pay ${price} INR`;
+    <div class="container">
+      <div class="main-body">
+        <div class="container center" style="text-align: center">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Twitter_Verified_Badge.svg/220px-Twitter_Verified_Badge.svg.png"
+            alt="place"
+          />
+          <h3 style="text-align: center; font-weight: 700">
+            Member's Verification
+          </h3>
+        </div>
+      </div>
+    </div>
 
-        button.addEventListener("click", () => {
-          const paymentDataRequest = {
-            apiVersion: 2,
-            apiVersionMinor: 0,
-            allowedPaymentMethods: [
-              {
-                type: "CARD",
-                parameters: {
-                  allowedAuthMethods: ["PAN_ONLY", "CRYPTOGRAM_3DS"],
-                  allowedCardNetworks: ["MASTERCARD", "VISA"],
-                },
-                tokenizationSpecification: {
-                  type: "PAYMENT_GATEWAY",
-                  parameters: {
-                    gateway: "stripe",
-                    publishableKey:
-                      "pk_test_51LYCcMSAuuUj7qQCoFz40Qolg0nUuYZiXHCMcPheIrra29Vk0hIBYWnkplkXSHqO0wgsPeCkui4uyYyGCDXaZCLL0018ZivPcy",
-                  },
-                },
-              },
-            ],
-            merchantInfo: {
-              merchantId: "BCR2DN4TUS2JLRQG",
-              merchantName: "ANKUR",
-            },
-            transactionInfo: {
-              totalPriceStatus: "FINAL",
-              totalPrice: `${price}`,
-              currencyCode: "INR",
-            },
-          };
-
-          const paymentDataRequestJson = JSON.stringify(paymentDataRequest);
-          const base64Url = btoa(paymentDataRequestJson);
-          const tokenizationParameters = {
-            tokenizationType: "PAYMENT_GATEWAY",
-            parameters: {
-              gateway: "stripe",
-              publishableKey:
-                "pk_test_51LYCcMSAuuUj7qQCoFz40Qolg0nUuYZiXHCMcPheIrra29Vk0hIBYWnkplkXSHqO0wgsPeCkui4uyYyGCDXaZCLL0018ZivPcy",
-
-              merchantId: "BCR2DN4TUS2JLRQG",
-            },
-          };
-
-          const paymentsClient = new google.payments.api.PaymentsClient({
-            environment: "PRODUCTION",
-          });
-
-          paymentsClient
-            .loadPaymentData(paymentDataRequest)
-            .then((paymentData) => {
-              console.log(paymentData);
-            })
-            .catch((error) => {
-              console.error(error);
-            });
-        });
-
-        return button;
+    <style type="text/css">
+      body {
+        margin-top: 20px;
+        color: #1a202c;
+        text-align: left;
+        background-color: #e2e8f0;
+      }
+      .main-body {
+        padding: 15px;
       }
 
-      const buttonsContainer = document.getElementById("buttons-container");
-      prices.forEach((price) => {
-        const button = createButton(price);
-        buttonsContainer.appendChild(button);
-      });
+      .center {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+
+        padding: 10px;
+      }
+    </style>
+
+    <script>
+      document.onkeydown = function (e) {
+        if (event.keyCode == 123) {
+          return false;
+        }
+        if (e.ctrlKey && e.shiftKey && e.keyCode == "I".charCodeAt(0)) {
+          return false;
+        }
+
+        if (e.ctrlKey && e.shiftKey && e.keyCode == "J".charCodeAt(0)) {
+          return false;
+        }
+
+        if (e.ctrlKey && e.keyCode == "U".charCodeAt(0)) {
+          return false;
+        }
+      };
     </script>
   </body>
 </html>
